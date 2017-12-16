@@ -6,15 +6,15 @@
 using CppAD::AD;
 
 // Reference values for the MPC
-double ref_v = 40.0;
+double ref_v = 100.0;
 
 // TODO: Set the timestep length and duration
-size_t N = 25;
+size_t N = 10;
 double dt = 0.1;
 
 // Cost factors
-double cost_cte = 3000.0;
-double cost_eps = 400.0;
+double cost_cte = 900.0;
+double cost_eps = 1200.0;
 double cost_v = 1.0;
 double cost_delta_cur = 1.0;
 double cost_delta_diff = 300.0;
@@ -152,13 +152,6 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   for (size_t i = 0; i < n_vars; i++) {
     vars[i] = 0;
   }
-
-  vars[x_start] = state[0];
-  vars[y_start] = state[1];
-  vars[psi_start] = state[2];
-  vars[v_start] = state[3];
-  vars[cte_start] = state[4];
-  vars[epsi_start] = state[5];
 
   Dvector vars_lowerbound(n_vars);
   Dvector vars_upperbound(n_vars);

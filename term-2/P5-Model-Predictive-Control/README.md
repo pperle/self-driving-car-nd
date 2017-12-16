@@ -23,16 +23,23 @@ Predictios are based on the current state and the actuators.
 ![Update equations](./img/state_equations.png)
 
 ## Timestep Length and Elapsed Duration (N & dt)
- N stands for the number of control inputs the lower the value the faster the solver can find a solution. Ipopt, the solver, permutes the control input values until it finds the lowest cost. 
+ N stands for the number of control inputs the lower the value the faster the solver can find a solution. Ipopt, the solver, permutes the control input values until it finds the lowest cost. I started with a value of 25 for N, but reduced it to 10 to gain performance. The length of the time step (dt) could also be reduced to gain accuracy but the value (0.1) I sarted with worked out fine.
+
+## A polynomial is fitted to waypoints. If the student preprocesses waypoints, the vehicle state, and/or actuators prior to the MPC procedure it is described.
+Waypoints are being preprocessed to simplify the process of polynomial fit. Waypoints are converted from world to the vehicle's local coordinates (line 103-109 in main.cpp).
+
+## Details on how they deal with latency
+To simulate a delay a vehicle model is used to predict the state where the vehicle will be in 100ms (line 119-127 in main.cpp).
+After adding the delay the MPC did not perform as good as it did without the delay. After tuning some parameters it was able to drive around the track without leaving it (deviation from the central lane was higher than before).
 
 ## Paramter tuning
 |Paramter   |value   |description   |
 |---|:-:|---|
-|cost_cte   |3000.0   |describes the distance between the planned route (given by two waypoints) and the actual position. **very important**   |
-|cost_eps   |400.0   | keeps the vehicle at the center of the lane   |
-|cost_v   |1.0   | low penatly when not keeping speed at 40mph  |
-|cost_delta_cur   |1.0   |   |
-|cost_delta_diff   |300.0   |   |
+|cost_cte   |900.0   |describes the distance between the planned route (given by two waypoints) and the actual position. |
+|cost_eps   |1200.0   | keeps the vehicle at the center of the lane   |
+|cost_v   |1.0   | low penatly when not keeping speed at 100mph  |
+|cost_delta_cur   |1.0   | slow steering change in curves  |
+|cost_delta_diff   |300.0   | penalty factor for the steering angle difference  |
 |cost_a_cur   |1.0   | slow deccelerate in curves   |
 |cost_a_diff   |10.0   | higher acceleration  |
 
