@@ -30,9 +30,9 @@ The car can smoothly change lanes when it makes sense to do so.
 
 The code is based on the [Path Planning Walkthrough video](https://www.youtube.com/watch?v=7sI3VHFPP0w). 
 
-A simplified prediction algorithm is used where three variables (`car_left`, `car_ahead`, `car_right`) represent whether the ego vehicle is surrounded by other cars. For each element in `sensor_fusion` the next position for this vehicle is calculated `predicted_s` (line 268), and if this vehicle is too near the ego vehicle, the flags are set (line 271-277).
+A simplified prediction algorithm is used where three variables (`car_left`, `car_front`, `car_right`) represent whether the ego vehicle is surrounded by other cars. For each element in `sensor_fusion` the next position for this vehicle is calculated `predicted_s` (line 268), and if this vehicle is too near the ego vehicle, the flags are set (line 271-277).
 
-In the next step, the behavioral planning, there are only three possible states (keep in lane, left lane change and right lane change). The ego vehicle will keep in the lane as long as `car_ahead == false`. When `car_ahead == true` it will try to change lane.
+In the next step, the behavioral planning, there are only three possible states (keep in lane, left lane change and right lane change). The ego vehicle will keep in the lane as long as `car_front == false`. When `car_front == true` it will try to change lane.
 
 In the trajectory planning step a smooth path is planed using the spline library as suggested in the [Path Planning Walkthrough](https://www.youtube.com/watch?v=7sI3VHFPP0w).
 
