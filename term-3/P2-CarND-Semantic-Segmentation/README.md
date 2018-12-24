@@ -52,7 +52,7 @@ To improve the learning process every convolutional and deconvolutional layer in
 The Adam optimizer with an initial learning rate of 0.001 has been chosen. The other chosen hyperparameter is the keep probability 0.5, a batch size of 5 and 50 epochs.
 
 For results see gif or results folder.
-![results](https://i.imgur.com/D4iLy46.gif)
+![results](https://i.imgur.com/2eEzW9I.gif)
 
 ### Tips
 - The link for the frozen `VGG16` model is hardcoded into `helper.py`.  The model can be found [here](https://s3-us-west-1.amazonaws.com/udacity-selfdrivingcar/vgg.zip).
