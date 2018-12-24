@@ -51,7 +51,7 @@ To improve the learning process every convolutional and deconvolutional layer in
 
 The Adam optimizer with an initial learning rate of 0.001 has been chosen. The other chosen hyperparameter is the keep probability 0.5, a batch size of 5 and 50 epochs.
 
-For results see gif or results folder.
+For results see [gif](https://i.imgur.com/2eEzW9I.gifv) or results folder.
 ![results](https://i.imgur.com/2eEzW9I.gif)
 
 ### Tips
